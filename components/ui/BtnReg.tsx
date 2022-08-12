@@ -6,7 +6,7 @@ function BtnReg(props) {
 
     return (
 
-        <button className="btn btn-link" > {props.name} onClick={props.onClick}</button>
+        <button className="btn btn-link" onClick={props.onClick} style={props.style}> {props.name} </button>
 
 
 

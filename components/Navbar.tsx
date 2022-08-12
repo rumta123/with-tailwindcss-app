@@ -9,7 +9,9 @@ import Kolokol from "./ui/kolokol";
 import Profile from "./ui/Profile";
 
 const Navbar = () => {
+   // состояние отвечает за регистрацию и вход модал
   const [isReg, setIsReg] = useState(false)
+  // состояние отвечает за вход пользователя
   const [isLogin, setIsLogin] = useState(false)
   return (
 
@@ -79,7 +81,7 @@ const Navbar = () => {
 
           {isReg ? <Reg setIsReg={setIsReg} /> :
             <Enter />}
-          {isReg ? <BtnReg onClick={() => setIsReg(x => !x)} name="Авторизация" /> : <button className="btn btn-link" onClick={() => setIsReg(x => !x)}>Регистрация</button>}
+          {isReg ? <BtnReg onClick={() => setIsReg(x => !x)} name="Авторизация" /> : <BtnReg onClick={() => setIsReg(x => !x)} name="Регистрация" />}
         </div>
 
       </div>

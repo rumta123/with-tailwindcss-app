@@ -1,12 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import Button from "../ui/Button";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import BtnReg from "../ui/BtnReg";
 const Reg = function ({ children }: React.PropsWithChildren) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isTel, setIsTel] = useState(false)
 
-    // отработка Бэкспайс
+    const [isTelValue, setIsTelValue] = useState('')
+    const [Output, setOuput] = useState('')
+
+
+    // отработка Бэкспэйс
     const getInputNumbersValue = function (input) {
         // Return stripped input value — just numbers
         return input.value.replace(/\D/g, '');
@@ -38,8 +43,7 @@ const Reg = function ({ children }: React.PropsWithChildren) {
 
 
     let textOut = React.createRef()
-    const [title, setTitle] = useState('')
-    const [Output, setOuput] = useState('')
+
 
     function ShowInput(e) {
 
@@ -91,9 +95,11 @@ const Reg = function ({ children }: React.PropsWithChildren) {
 
     return (
         <div>
-            {isTel ? <Formik
+            {isTel ? <div> <Formik
                 initialValues={{ kod: '' }}
+
                 validate={values => {
+                    values.kod = isTelValue
                     const errors = {};
                     if (!values.kod) {
                         errors.kod = 'Обязательное поле';
@@ -105,7 +111,7 @@ const Reg = function ({ children }: React.PropsWithChildren) {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
 
-
+                    values.kod = isTelValue
                     setTimeout(() => {
 
                         alert(JSON.stringify(values, null, 2));
@@ -116,7 +122,7 @@ const Reg = function ({ children }: React.PropsWithChildren) {
                 {({ isSubmitting }) => (
                     <Form>
                         <div className="py-2">
-                            <Field type="tel" name="kod" placeholder="Введите код" className="input input-bordered w-full max-w-xs" />
+                            <Field type="tel" name="kod" placeholder="Введите код" value={isTelValue} onChange={(e) => { setIsTelValue(e.target.value) }} className="input input-bordered w-full max-w-xs" />
                             <ErrorMessage className="text-red-600" name="kod" component="div" />
                         </div>
 
@@ -132,10 +138,14 @@ const Reg = function ({ children }: React.PropsWithChildren) {
 
                 )}
             </Formik>
+                <div className="flex items-center"> <p>Если вы ошиблись нажмите </p><BtnReg  style={{marginLeft:'-12px'}} onClick={() => setIsTel(x => !x)} name="назад" /></div>
+
+            </div>
                 :
                 <Formik
                     initialValues={{ tel: '' }}
                     validate={values => {
+                        values.tel = Output
                         const errors = {};
                         if (!values.tel) {
                             errors.tel = 'Обязательное поле';
@@ -150,20 +160,20 @@ const Reg = function ({ children }: React.PropsWithChildren) {
                             alert(JSON.stringify(values, null, 2));
                             setSubmitting(false);
                         }, 400);
-                    }}
+                        setIsTel(x => !x)
+                    }
+
+                    }
                 >
                     {({ isSubmitting }) => (
                         <Form>
                             <div className="py-2">
                                 <Field type="tel" onInput={ShowInput} name="tel" onKeyDown={handleBackspace} value={Output} placeholder="Введите телефон" className="input input-bordered w-full max-w-xs" />
-                                <ErrorMessage className="text-red-600" name="email" component="div" />
+                                <ErrorMessage className="text-red-600" name="tel" component="div" />
                             </div>
 
                             <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
-
                                 <Button disabled={isSubmitting} name="вход" />
-
-
                             </div>
 
                         </Form>
