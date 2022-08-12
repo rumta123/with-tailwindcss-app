@@ -4,22 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 const Reg = function ({ children }: React.PropsWithChildren) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const click = async () => {
-        try {
-            let data;
-            if (isLogin) {
-                data = await login(email, password);
-            } else {
-                data = await registration(email, password);
-            }
-            user.setUser(user)
-            user.setIsAuth(true)
-            history.push(SHOP_ROUTE)
-        } catch (e) {
-            alert(e.response.data.message)
-        }
+    const [isTel, setIsTel] = useState(false)
 
-    }
     // отработка Бэкспайс
     const getInputNumbersValue = function (input) {
         // Return stripped input value — just numbers
@@ -105,46 +91,90 @@ const Reg = function ({ children }: React.PropsWithChildren) {
 
     return (
         <div>
-        <Formik
-            initialValues={{ tel: '' }}
-            validate={values => {
-                const errors = {};
-                if (!values.tel) {
-                    errors.tel = 'Обязательное поле';
-                }
-                return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-                values.tel = Output
+            {isTel ? <Formik
+                initialValues={{ kod: '' }}
+                validate={values => {
+                    const errors = {};
+                    if (!values.kod) {
+                        errors.kod = 'Обязательное поле';
+                    }
+                    if (values.kod.length < 4) {
+                        errors.kod = 'минимальное количество цифр должно быть 4';
+                    }
+                    return errors;
+                }}
+                onSubmit={(values, { setSubmitting }) => {
 
-                setTimeout(() => {
 
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-            }}
-        >
-            {({ isSubmitting }) => (
-                <Form>
-                    <div className="py-2">
-                        <Field type="tel" onInput={ShowInput} name="tel" onKeyDown={handleBackspace} value={Output} placeholder="Введите телефон" className="input input-bordered w-full max-w-xs" />
-                        <ErrorMessage className="text-red-600" name="email" component="div" />
-                    </div>
+                    setTimeout(() => {
 
-                    <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
+                        alert(JSON.stringify(values, null, 2));
+                        setSubmitting(false);
+                    }, 400);
+                }}
+            >
+                {({ isSubmitting }) => (
+                    <Form>
+                        <div className="py-2">
+                            <Field type="tel" name="kod" placeholder="Введите код" className="input input-bordered w-full max-w-xs" />
+                            <ErrorMessage className="text-red-600" name="kod" component="div" />
+                        </div>
 
-                        {/* <Button disabled={isSubmitting} name="вход" />
-                        <Button  name="регистрация" /> */}
+                        <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
 
-                    </div>
+                            <Button disabled={isSubmitting} name="подтвердить" />
 
-                </Form>
-                 
 
-            )}
-        </Formik>
-       
-        </div> 
+                        </div>
+
+                    </Form>
+
+
+                )}
+            </Formik>
+                :
+                <Formik
+                    initialValues={{ tel: '' }}
+                    validate={values => {
+                        const errors = {};
+                        if (!values.tel) {
+                            errors.tel = 'Обязательное поле';
+                        }
+                        return errors;
+                    }}
+                    onSubmit={(values, { setSubmitting }) => {
+                        values.tel = Output
+
+                        setTimeout(() => {
+
+                            alert(JSON.stringify(values, null, 2));
+                            setSubmitting(false);
+                        }, 400);
+                    }}
+                >
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <div className="py-2">
+                                <Field type="tel" onInput={ShowInput} name="tel" onKeyDown={handleBackspace} value={Output} placeholder="Введите телефон" className="input input-bordered w-full max-w-xs" />
+                                <ErrorMessage className="text-red-600" name="email" component="div" />
+                            </div>
+
+                            <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
+
+                                <Button disabled={isSubmitting} name="вход" />
+
+
+                            </div>
+
+                        </Form>
+
+
+                    )}
+                </Formik>
+
+
+            }
+        </div>
     )
 }
 

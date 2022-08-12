@@ -5,6 +5,7 @@ import Button from "../ui/Button";
 const Enter = function ({ children }: React.PropsWithChildren) {
 
     return (
+
         <Formik
             initialValues={{ email: '', password: '' }}
             validate={values => {
@@ -32,19 +33,28 @@ const Enter = function ({ children }: React.PropsWithChildren) {
             }}
         >
             {({ isSubmitting }) => (
+
                 <Form>
-                    <div className="py-2">
-                        <Field type="email" name="email" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+
+                    <div className="form-control py-2">
+                        <label className="input-group">
+                            <span>Email</span>
+                            <Field type="email" name="email" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+
+                        </label>
                         <ErrorMessage className="text-red-600" name="email" component="div" />
                     </div>
-                    <div className="py-2">
-                        <Field type="password" name="password" placeholder="******" className="input input-bordered w-full max-w-xs" />
+                    <div className="form-control py-2">
+                        <label className="input-group">
+                            <span>Pass</span>
+                            <Field type="password" name="password" placeholder="******" className="input input-bordered w-full max-w-xs" />
+                        </label>
                         <ErrorMessage name="password" className="text-red-600" component="div" />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
 
-                        {/* <Button disabled={isSubmitting} name="вход" />
-                        <Button disabled={isSubmitting} name="регистрация" /> */}
+                        <Button disabled={isSubmitting} name="вход" />
+
 
                         {children}
                     </div>
@@ -52,6 +62,7 @@ const Enter = function ({ children }: React.PropsWithChildren) {
                 </Form>
             )}
         </Formik>
+
     );
 }
 

@@ -5,11 +5,7 @@ function Button(props) {
 
 
     return (
-
-        <button type="submit" className="btn btn-success mx-1"> {props.name} </button>
-
-
-
+        <button type="submit" className="btn btn-success btn btn-success input-bordered w-full max-w-xs"> {props.name} </button>
     );
 };
 
