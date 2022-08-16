@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from "../ui/Button";
 
-const Enter = function ({ children }: React.PropsWithChildren) {
+const Enter = function () {
 
     return (
 
@@ -56,7 +56,7 @@ const Enter = function ({ children }: React.PropsWithChildren) {
                         <Button disabled={isSubmitting} name="вход" />
 
 
-                        {children}
+
                     </div>
 
                 </Form>

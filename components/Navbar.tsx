@@ -1,4 +1,4 @@
-import React, { Children, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Reg from "./forms/Reg";
 import Enter from "./forms/Enter";
@@ -9,7 +9,7 @@ import Kolokol from "./ui/kolokol";
 import Profile from "./ui/Profile";
 
 const Navbar = () => {
-   // состояние отвечает за регистрацию и вход модал
+  // состояние отвечает за регистрацию и вход модал
   const [isReg, setIsReg] = useState(false)
   // состояние отвечает за вход пользователя
   const [isLogin, setIsLogin] = useState(false)
@@ -18,23 +18,24 @@ const Navbar = () => {
     <div className="navbar bg-base-200">
       <div className="navbar bg-base-200" style={{ maxWidth: '1360px', margin: '0 auto' }}>
         <div className="navbar-start" > <DarkMode />
-          {isLogin ? <span> Free-Student</span> : <span> хрень</span>}
+          {isLogin ? <span>Буй-попутчик</span> : <span> Попутчик Буй</span>}
         </div>
 
         <div className="navbar-end">
           <div className="flex">
 
             <button tabIndex={1}
-              className="flex flex-row justify-center items-center gap-2 btn btn-ghost">   <Link href="/">
-                <a>Создать задание</a>
+              className="flex flex-row justify-center items-center gap-2 btn btn-ghost">  
+               <Link href="/sozsatpoezdku">
+                <a>Создать поездку</a>
               </Link>
             </button>
 
             <span className="flex flex-row justify-center items-center gap-2 ">или</span>
 
             <button tabIndex={1}
-              className="flex   btn btn-ghost">  <Link href="/">
-                <a>Найти задание</a>
+              className="flex   btn btn-ghost"> <Link href="/naitipoezdku"> 
+                <a>Найти поездку</a>
               </Link>
             </button>
 

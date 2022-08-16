@@ -35,35 +35,22 @@ const Reg = function () {
             }
         } else {
             formattedInputValue = '+' + textInput.current.value.substring(0, 16);
-        }
+        } 
+        setOuput(textInput.current.value)
     }
 
+   
 
-    // console.log(textInput.current.value)
-    // if (textInput.current.value[0] == 7 || textInput.current.value[0] == 8) {
-    //     textInput.current.value = '+7'
-
-    // }
-    // if (textInput.current.value[0] == 9) {
-    //     textInput.current.value = '+7' + textInput.current.value[0]
-    // }
-    // if (textInput.current.length > 1) {
-    //     textInput.current.value = textInput.current.value + '('
-    // }
-    // textOut.current.innerHTML = textInput.current.value
-
-    setOuput(textInput.current.value)
-}
 return (
 
     <form>
         <h3> {title}</h3>
         <div className="py-2">
-            <input type="tel" onInput={ShowInput} name="tel" ref={textInput} placeholder="Введите телефон" data-tel-input className="input input-bordered w-full max-w-xs" />
+            <input type="tel" onInput={ShowInput} name="tel" value={Output} ref={textInput} placeholder="Введите телефон" data-tel-input className="input input-bordered w-full max-w-xs" />
 
         </div>
         <p ref={textOut}></p>
-        <h3>{Output}</h3>
+        <h3>тут{Output}</h3>
         <div style={{ display: 'flex', justifyContent: 'flexEnd' }}>
             <button type="submit" className="btn btn-success" >
                 регистрация
