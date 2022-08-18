@@ -6,10 +6,11 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Footer from '../components/Footer';
 
-import SearchTrip from '../components/search/SearchTrip';
+import AddTrip from '../components/search/AddTrip';
+
 const sozsatpoezdku = () => {
   
-    
+   const [isAddTrip, setIsAddTrip] =useState(false) 
     return (
 
         <div className={styles.container}>
@@ -18,8 +19,8 @@ const sozsatpoezdku = () => {
             </Head>
             <Navbar />
             <main className={styles.main}>
-                <h2 className={styles.title}>Создать поездку</h2>
-               <SearchTrip/>
+              {isAddTrip ?<h2 className={styles.title}> Поездка создана </h2> :<h2 className={styles.title}>Создать поездку</h2>}  
+               <AddTrip/>
             </main>
             <Footer />
         </div>

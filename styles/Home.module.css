@@ -58,11 +58,20 @@
   line-height: 1.5;
   font-size: 1.5rem;
 }
+
 .description1 {
   line-height: 1.5;
   font-size: 1.2em;
   color: #2a2a2a;
 }
+
+.description2 {
+  line-height: 1.5;
+  font-size: 1.1em;
+  color: #2a2a2a;
+  width: 40px
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;

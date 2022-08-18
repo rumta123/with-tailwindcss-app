@@ -138,7 +138,7 @@ const Reg = function ({ children }: React.PropsWithChildren) {
 
                 )}
             </Formik>
-                <div className="flex items-center"> <p>Если вы ошиблись нажмите </p><BtnReg  style={{marginLeft:'-12px'}} onClick={() => setIsTel(x => !x)} name="назад" /></div>
+                <div className="flex items-center"> <p>Если вы ошиблись нажмите </p><BtnReg style={{ marginLeft: '-12px' }} onClick={() => setIsTel(x => !x)} name="назад" /></div>
 
             </div>
                 :
@@ -149,6 +149,9 @@ const Reg = function ({ children }: React.PropsWithChildren) {
                         const errors = {};
                         if (!values.tel) {
                             errors.tel = 'Обязательное поле';
+                        }
+                        if (values.tel.length < 17) {
+                            errors.tel = 'Упс. Телефон не правильный!';
                         }
                         return errors;
                     }}

@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import ru from 'date-fns/locale/ru';
 registerLocale('ru', ru)
-const SearchTrip = () => {
+const AddTrip = () => {
 
 
     const [startDate, setStartDate] = useState(
@@ -78,7 +78,10 @@ const SearchTrip = () => {
             <form className="w-full max-w-xs">
                 <div className=" w-full max-w-xs">
 
-                   
+                    <div className='flex'>
+                        <p>свободных мест</p>
+                        <input type="text" placeholder=' свободных мест' value={freePlace} onChange={(e) => { setFreePlace(e.target.value) }} />
+                    </div>
 
                     <p>Откуда</p>
                     <Select
@@ -113,16 +116,16 @@ const SearchTrip = () => {
 
                     />
 
-                    
+                    <p>Количество свободных мест {freePlace}</p>
                     <p>{kuda1}</p>
                     <p>{kuda2}</p>
                 </div>
 
             </form>
-            <Button style={{ marginTop: '10px' }} name="Найти поездку" />
+            <Button style={{ marginTop: '10px' }} name="Создать поездку" />
 
 
         </div>
     )
 }
-export default SearchTrip;
+export default AddTrip;
